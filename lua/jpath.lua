@@ -3,7 +3,6 @@ local util = require("jp_utils")
 local windows = require("jp_windows")
 
 local function apply_filter(expr)
-  local currwin = api.nvim_get_current_win()
   local flags = util.get_opt("jpath_flags")
   local json_t = api.nvim_buf_get_lines(0, 0, -1, false)
   local json = ""
@@ -25,7 +24,6 @@ local function capture_expr()
 end
 
 local function filter()
-  local currwin = api.nvim_get_current_win()
   if api.nvim_buf_get_option(0, "filetype") ~= "json" then
     util.println("filetype is not json, cannot execute jpath")
     return
@@ -34,7 +32,6 @@ local function filter()
 end
 
 local function format()
-  local currwin = api.nvim_get_current_win()
   local flags = util.get_opt("jpath_flags")
   local json_t = api.nvim_buf_get_lines(0, 0, -1, false)
   local json = ""
@@ -45,7 +42,7 @@ local function format()
   local cmd = string.format("jpath %s . '%s'", flags, json)
   local formatted = vim.fn.system(cmd)
   api.nvim_command("%d")
-  api.nvim_paste(formatted, true, -1)
+  api.nvim_put(formatted, true, -1)
 end
 
 return {

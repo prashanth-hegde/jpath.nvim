@@ -14,4 +14,4 @@ unlet s:save_cpo
 "let g:jpath_split = 'horizontal'                     " specifies whether to split output window vertically or horizontally
 "let g:jpath_flags = '-u'                             " the default environment to get http configuration from
 
-let g:loaded_nhttp = 1
+let g:loaded_jpath = 1
